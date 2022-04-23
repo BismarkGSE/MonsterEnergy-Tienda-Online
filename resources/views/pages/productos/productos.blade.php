@@ -1,7 +1,6 @@
 @extends('layouts.app', ['activePage' => 'productos', 'titlePage' => __('Productos')])
 
 @section('content')
-<script src="https://kit.fontawesome.com/457e6ae13b.js" crossorigin="anonymous"></script>
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -24,27 +23,14 @@
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    Nombre
-                  </th>
-                  <th>
-                    Categoria
-                  </th>
-                  <th>
-                    Stock
-                  </th>
-                  <th>
-                    Precio
-                  </th>
-                  <th>
-                    Editar
-                  </th>
-                  <th>
-                    Quitar
-                  </th>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Categoria</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Imagen</th>
+                  <th>Editar</th>
+                  <th>Quitar</th>
                 </thead>
                 <tbody>
                   <!-- AQUI LOS PRODUCTOS -->
@@ -54,7 +40,8 @@
                       <td>{{ $item->nombreProducto }}</td>
                       <td>{{ $item->name }}</td>
                       <td>{{ $item->stock }}</td>
-                      <td>{{ $item->precio }}</td>
+                      <td>{{ $item->precio }} <span class="text-danger font-weight-bold">€</span></td>
+                      <td><img src="{{ $item->img }}" alt="Imagen Productos" class="img-thumbnail img-producto"></td>
                       <td>
                         <form action="{{ route('productos.update', $item->id) }}" method="get">
                           <button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></i></button>

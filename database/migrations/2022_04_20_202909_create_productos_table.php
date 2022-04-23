@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('idCategoria')->unsigned()->references('id')->constrained('categorias')->on('categorias');
             $table->integer('stock');
             $table->float('precio');
+            $table->string('img');
             $table->timestamps();
         });
     }

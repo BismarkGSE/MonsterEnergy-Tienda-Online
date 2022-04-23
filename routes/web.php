@@ -47,9 +47,16 @@ Route::group(['middleware' => 'auth'], function () {
 
   /************** INICIO PEDIDOS **************/
   // PEDIDOS
-	Route::get('pedidos', function () {
-		return view('pages.pedidos');
-	})->name('pedidos');
+  Route::get('pedidos', [ProductosController::class, 'show'])->name('pedidos');
+  Route::get('insertar-pedidos', [ProductosController::class, 'create'])->name('pedidos.insert');
+  Route::get('modificar-pedidos/{id}', [ProductosController::class, 'edit'])->name('pedidos.update');
+  Route::get('borrar-pedidos/{id}', [ProductosController::class, 'destroyShow'])->name('pedidos.delete');
+  // PEDIDOS POST
+  Route::post('insertar-pedidos', [ProductosController::class, 'create'])->name('pedidos.insert-post');
+  // PEDIDOS PUT
+  Route::put('modificar-pedidos/{id}', [ProductosController::class, 'update'])->name('pedidos.update-put');
+  // PEDIDOS DELETE
+  Route::delete('borrar-pedidos/{id}', [ProductosController::class, 'destroy'])->name('pedidos.delete-delete');
   /************** FIN PEDIDOS **************/
 
 	/*Route::get('map', function () {

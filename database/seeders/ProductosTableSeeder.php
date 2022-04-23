@@ -20,6 +20,7 @@ class ProductosTableSeeder extends Seeder
           'idCategoria' => 1,
           'stock' => 21,
           'precio' => 23.45,
+          'img' => 'img/productos/rehab-peach-energy-drink.webp',
       ]);
     }
 }

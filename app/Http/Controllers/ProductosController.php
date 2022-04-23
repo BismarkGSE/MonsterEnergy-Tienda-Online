@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Productos;
+use App\Models\Categorias;
 use Illuminate\Http\Request;
 
 class ProductosController extends Controller
@@ -22,17 +23,34 @@ class ProductosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
       if ( $_POST ) {
-        $categoria = new Productos();
-        $categoria->name = $request->post('nombreProducto');
-        $categoria->name = $request->post('idCategoria');
-        $categoria->name = $request->post('stock');
-        $categoria->name = $request->post('precio');
-        $categoria->save();
 
-        return redirect()->route('categorias')->with("success", "Agregado con exito !");
+        $validated = $request->validate([
+          'nombreProducto' => 'required',
+          'idCategoria' => 'required',
+          'stock' => 'required',
+          'precio' => 'required',
+          'img' => 'required',
+        ]);
+
+        $productos = new Productos();
+        $productos->nombreProducto = $request->post('nombreProducto');
+        $productos->idCategoria = $request->post('idCategoria');
+        $productos->stock = $request->post('stock');
+        $productos->precio = $request->post('precio');
+
+        if ( $img = $request->file('img') ) {
+          $rutaGuardarImg = 'img/productos/';
+          $imgProducto = time() . '_' . $img->getClientOriginalName();
+          $img->move($rutaGuardarImg, $imgProducto);
+          $productos->img = $rutaGuardarImg . '/' . $imgProducto;
+        }
+
+        $productos->save();
+
+        return redirect()->route('productos')->with("success", "Agregado con exito !");
       } else {
         $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("categorias.id","categorias.name")->get();
         return view('pages.productos.insert-products', compact('datos'));
@@ -59,7 +77,7 @@ class ProductosController extends Controller
      */
     public function show(Productos $productos)
     {
-      $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio")->get();
+      $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio","productos.img")->get();
       return view('pages.productos.productos', compact('datos'));
     }
 
@@ -69,9 +87,12 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Productos $productos)
+    public function edit($id)
     {
-        //
+      $productos = Productos::find($id);
+      $datos = Categorias::all();
+      $catProd = Categorias::find($productos->idCategoria);
+      return view('pages.productos.update-products', compact('productos','datos','catProd'));
     }
 
     /**
@@ -81,9 +102,24 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Productos $productos)
+    public function update(Request $request, $id)
     {
-        //
+      $productos = Productos::find($id);
+      $productos->nombreProducto = $request->post('nombreProducto');
+      $productos->idCategoria = $request->post('idCategoria');
+      $productos->stock = $request->post('stock');
+      $productos->precio = $request->post('precio');
+
+      if ( $img = $request->file('img') ) {
+        $rutaGuardarImg = 'img/productos/';
+        $imgProducto = time() . '_' . $img->getClientOriginalName();
+        $img->move($rutaGuardarImg, $imgProducto);
+        $productos->img = $rutaGuardarImg . $imgProducto;
+      }
+
+      $productos->save();
+
+      return redirect()->route('productos')->with("success", "Actualizado con exito !");
     }
 
     /**
@@ -92,8 +128,24 @@ class ProductosController extends Controller
      * @param  \App\Models\Productos  $productos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Productos $productos)
+    public function destroyShow($id)
     {
-        //
+      $productos = Productos::find($id);
+      $categoria = Categorias::find($productos->idCategoria);
+      return view('pages.productos.delete-products', compact('productos','categoria'));
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Productos  $productos
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+      $productos = Productos::find($id);
+      $productos->delete();
+      return redirect()->route('productos')->with('success','Eliminado con exito !');
+    }
+
 }

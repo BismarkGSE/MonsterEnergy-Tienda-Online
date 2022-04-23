@@ -1,7 +1,6 @@
 @extends('layouts.app', ['activePage' => 'categorias', 'titlePage' => __('Categorias')])
 
 @section('content')
-<script src="https://kit.fontawesome.com/457e6ae13b.js" crossorigin="anonymous"></script>
 <div class="content">
   <div class="container-fluid">
     <div class="row">
