@@ -3,17 +3,24 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/* CARRITO
+Route::get('/', [ProductController::class, 'productList'])->name('products.list');
+Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
+Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
+/* FIN CARRITO */
 
+/* ADMIN */
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
+Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin')->middleware('auth');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -47,17 +54,29 @@ Route::group(['middleware' => 'auth'], function () {
 
   /************** INICIO PEDIDOS **************/
   // PEDIDOS
-  Route::get('pedidos', [ProductosController::class, 'show'])->name('pedidos');
-  Route::get('insertar-pedidos', [ProductosController::class, 'create'])->name('pedidos.insert');
-  Route::get('modificar-pedidos/{id}', [ProductosController::class, 'edit'])->name('pedidos.update');
-  Route::get('borrar-pedidos/{id}', [ProductosController::class, 'destroyShow'])->name('pedidos.delete');
+  Route::get('pedidos', [PedidosController::class, 'show'])->name('pedidos');
+  Route::get('insertar-pedidos', [PedidosController::class, 'create'])->name('pedidos.insert');
+  Route::get('modificar-pedidos/{id}', [PedidosController::class, 'edit'])->name('pedidos.update');
+  Route::get('borrar-pedidos/{id}', [PedidosController::class, 'destroyShow'])->name('pedidos.delete');
   // PEDIDOS POST
-  Route::post('insertar-pedidos', [ProductosController::class, 'create'])->name('pedidos.insert-post');
+  Route::post('insertar-pedidos', [PedidosController::class, 'create'])->name('pedidos.insert-post');
   // PEDIDOS PUT
-  Route::put('modificar-pedidos/{id}', [ProductosController::class, 'update'])->name('pedidos.update-put');
+  Route::put('modificar-pedidos/{id}', [PedidosController::class, 'update'])->name('pedidos.update-put');
   // PEDIDOS DELETE
-  Route::delete('borrar-pedidos/{id}', [ProductosController::class, 'destroy'])->name('pedidos.delete-delete');
+  Route::delete('borrar-pedidos/{id}', [PedidosController::class, 'destroy'])->name('pedidos.delete-delete');
   /************** FIN PEDIDOS **************/
+
+});
+
+/* MAIN */
+
+/* MAIN */
+
+/* HOME */
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::group(['middleware' => 'auth'], function () {
 
 	/*Route::get('map', function () {
 		return view('pages.map');

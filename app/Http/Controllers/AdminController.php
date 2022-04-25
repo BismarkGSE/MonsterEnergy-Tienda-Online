@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedidos;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
-class PedidosController extends Controller
+class AdminController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
-        //
+        return view('dashboard');
     }
 
     /**
@@ -42,22 +52,21 @@ class PedidosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pedidos  $pedidos
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Admin $admin)
     {
-      $datos = Pedidos::join('users','pedidos.idUsuario', '=', 'users.id')->select('pedidos.id','users.email','pedidos.fecha','pedidos.estado')->get();
-      return view('pages.pedidos.pedidos', compact('datos'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pedidos  $pedidos
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedidos $pedidos)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -66,10 +75,10 @@ class PedidosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pedidos  $pedidos
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedidos $pedidos)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -77,10 +86,10 @@ class PedidosController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pedidos  $pedidos
+     * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedidos $pedidos)
+    public function destroy(Admin $admin)
     {
         //
     }

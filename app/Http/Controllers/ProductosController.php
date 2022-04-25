@@ -52,7 +52,7 @@ class ProductosController extends Controller
 
         return redirect()->route('productos')->with("success", "Agregado con exito !");
       } else {
-        $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("categorias.id","categorias.name")->get();
+        $datos = Categorias::all();
         return view('pages.productos.insert-products', compact('datos'));
       }
 
@@ -77,8 +77,15 @@ class ProductosController extends Controller
      */
     public function show(Productos $productos)
     {
-      $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio","productos.img")->get();
-      return view('pages.productos.productos', compact('datos'));
+      if ( $_GET ) {
+        $search = $_GET['search'];
+        $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio","productos.img")->where('productos.nombreProducto','LIKE','%'.$search.'%')->get();
+        return view('pages.productos.productos', compact('datos'));
+      } else {
+        $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio","productos.img")->get();
+        return view('pages.productos.productos', compact('datos'));
+      }
+
     }
 
     /**

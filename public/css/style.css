@@ -1,0 +1,285 @@
+/* FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+
+/* @KEYFRAMES */
+@@keyframes height-visilidad {
+
+  0% {
+    height: 0px;
+    visibility: hidden;
+  }
+  100% {
+    height: 231px;
+    visibility: visible;
+  }
+
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+ul,li {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+/* CONTAINER DOCUMENT */
+.contianer {
+}
+
+/* INICIO PARTE HEADER */
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background: linear-gradient(to right, #e3e700, #56ab2f);
+}
+
+/* PARTE HEADER LOGO */
+.head_logo a img {
+  width: 200px;
+  padding: 5px;
+}
+
+/* PARTE HEADER MENU */
+.head_menu {
+  margin-top: 24px;
+}
+
+.head_menu .main_menu {
+  display: flex;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.head_menu .main_menu li {
+  padding: 1em;
+}
+
+.head_menu .main_menu li:hover {
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.head_menu .main_menu li:hover > .sub_menu {
+	display: block;
+}
+
+.head_menu .main_menu li a {
+  color: white;
+  padding: 1em;
+}
+
+.head_menu .main_menu li .sub_menu {
+	display: none;
+	position: absolute;
+	min-width: 140px;
+  margin-left: -60px;
+  margin-top: 1em;
+}
+
+.head_menu .main_menu li .sub_menu li {
+	position: relative;
+}
+
+.head_menu .main_menu li .sub_menu li {
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.head_menu .main_menu li .sub_menu li:hover {
+  background: #232526;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #414345, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #414345, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+/* PARTE HEADER USER MENU */
+.head_user_menu {
+  display: flex;
+}
+
+.head_user_menu .user_menu_item {
+  display: flex;
+  padding: 1em;
+  margin: auto;
+}
+
+.head_user_menu .user_menu_item span {
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 3px;
+}
+
+/* FIN PARTE DE HEADER */
+
+
+
+
+
+/* INICIO PARTE DE FOOTER */
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  margin: 0px 1em;
+}
+
+.parts_menu {
+  padding-left: 1em;
+}
+
+.parts_menu h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.parts_menu ul {
+  font-size: 14px;
+}
+
+.parts_menu ul li {
+  margin-left: -10px;
+}
+
+.parts_menu ul li:hover {
+  background-color: #e7e7e7;
+}
+
+.parts_menu ul li a {
+  color: #565656;
+  padding: .5em 0em;
+  width: 100%;
+  display: inline-flex;
+  padding-left: 10px;
+}
+
+.parts_menu ul li a svg {
+  margin-right: 10px;
+}
+
+.parts_menu_esp {
+  padding-left: 1em;
+}
+
+.parts_menu_esp h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.parts_menu_esp ul {
+  font-size: 14px;
+}
+
+.parts_menu_esp ul li {
+  margin-left: -10px;
+}
+
+.parts_menu_esp ul li:hover {
+  background-color: #e7e7e7;
+}
+
+.parts_menu_esp ul li a {
+  color: #565656;
+  padding: .5em 0em;
+  width: 100%;
+  display: inline-flex;
+  padding-left: 10px;
+}
+
+.parts_menu_esp ul li a svg {
+  margin-right: 10px;
+}
+
+/* FIN PARTE DE FOOTER */
+
+/*********************************************************************************************************/
+/**************************************** INICIO ADMININISTRACION ****************************************/
+/*********************************************************************************************************/
+.admin_container .admin_form {
+  height: 100vh;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin_form div {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.admin_form div label {
+  padding: .5em .5em .5em 0px;
+  font-weight: bold;
+}
+
+.admin_form div input {
+  padding: .5em;
+}
+
+.admin_form .inp_env {
+  margin-top: 1em;
+}
+
+.admin_form .inp_env input {
+  cursor: pointer;
+}
+
+/* @MEDIA QUERYS */
+
+@media only screen and (max-width: 910px) {
+
+  .head_user_menu .user_menu_item span {
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 850px) {
+
+  footer {
+    flex-flow: column wrap;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+  .parts_menu {
+    border-bottom: 1px solid grey;
+  }
+
+  .parts_menu ul {
+    visibility: hidden;
+    height: 0px;
+  }
+
+  .parts_menu h3 {
+    cursor: pointer;
+    margin: 0px;
+    padding: 1em 0em;
+  }
+
+  .parts_menu h3::after {
+    content: "+";
+    font-size: 2rem;
+    position: absolute;
+    right: 1.53rem;
+    margin-top: -14px;
+    cursor: pointer;
+  }
+
+}

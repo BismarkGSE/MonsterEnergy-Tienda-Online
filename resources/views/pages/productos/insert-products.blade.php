@@ -33,13 +33,13 @@
 
                 <div class="mb-3">
                   <label for="">Stock</label>
-                  <input type="text" name="stock" class="form-control" required placeholder="Stock">
+                  <input type="number" name="stock" class="form-control" required placeholder="Stock">
                   <div class="invalid-feedback">Introduzca el Stock disponible</div>
                 </div>
 
                 <div class="mb-3">
                   <label for="">Precio Unitario</label>
-                  <input type="text" name="precio" class="form-control" required placeholder="Precio Unitario">
+                  <input type="number" step="0.01"  name="precio" class="form-control" required placeholder="Precio Unitario">
                   <div class="invalid-feedback">Introduzca un Precio Unitario</div>
                 </div>
 

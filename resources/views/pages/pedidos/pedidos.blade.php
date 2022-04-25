@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'categorias', 'titlePage' => __('Categorias')])
+@extends('layouts.app', ['activePage' => 'pedidos', 'titlePage' => __('Pedidos')])
 
 @section('content')
 <div class="content">
@@ -7,33 +7,30 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h3 class="card-title ">TABLA DE CATEGORIAS</h3>
-            <a href="{{ route('categorias.insert') }}" class="btn btn-primary"><i class="fa-regular fa-square-plus"></i> Agregar nueva categoria</a>
-            <div class="row">
-              <div class="col-sm-12">
-                @if ( $mensaje = Session::get('success') )
-                  <div class="alert alert-success" role="alert">
-                    {{ $mensaje }}
-                  </div>
-                @endif
-              </div>
-            </div>
+            <h4 class="card-title ">TABLA DE PEDIDOS</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
                   <th>ID</th>
-                  <th>Nombre</th>
+                  <th>Usuario</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
                   <th>Editar</th>
                   <th>Quitar</th>
                 </thead>
                 <tbody>
-                  <!-- AQUI IRAN LAS CATEGORIAS -->
+                  @php
+                    //print_r($id)
+                  @endphp
+                  <!-- AUI LOS PEDIDOS -->
                   @foreach ( $datos as $item )
                     <tr>
                       <td>{{ $item->id }}</td>
-                      <td>{{ $item->name }}</td>
+                      <td>{{ $item->email }}</td>
+                      <td>{{ $item->fecha }}</td>
+                      <td>{{ $item->estado }}</td>
                       <td>
                         <form action="{{ route('categorias.update', $item->id) }}" method="get">
                           <button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></i></button>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -55,10 +56,18 @@ class CategoriasController extends Controller
      * @param  \App\Models\Categorias  $categorias
      * @return \Illuminate\Http\Response
      */
-    public function show()//show(Categorias $categorias)
+    public function show()
     {
-      $datos = Categorias::all();
-      return view('pages.categorias.categorias', compact('datos'));
+
+      if ( $_GET ) {
+        $search = $_GET['search'];
+        $datos = Categorias::where('name','LIKE','%'.$search.'%')->get();
+        return view('pages.categorias.categorias', compact('datos'));
+      } else {
+        $datos = Categorias::all();
+        return view('pages.categorias.categorias', compact('datos'));
+      }
+
     }
 
     /**
