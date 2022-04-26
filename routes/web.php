@@ -5,19 +5,21 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UsuariosController;
 
 /* ADMIN */
-Route::get('/admin-login', function () {
-  return view('admin-panel.admin');
-})->name('admin-login');
+Route::get('/', [UserController::class, 'show'])->name('main.show');
+Route::get('/{id}', [UserController::class, 'showCategorias'])->name('main.categorias');
+Route::get('/user-login', [UsuariosController::class, 'login'])->name('main.login');
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+/* HOME */
+Route::get('/admin', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin')->middleware('admin');
+Route::get('/admin', 'App\Http\Controllers\HomeController@index')->name('admin')->middleware('auth');
 
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
   /************** INICIO CATEGORIAS **************/
   // CATEGORIAS GET
@@ -61,33 +63,6 @@ Route::group(['middleware' => 'admin'], function () {
   Route::delete('borrar-pedidos/{id}', [PedidosController::class, 'destroy'])->name('pedidos.delete-delete');
   /************** FIN PEDIDOS **************/
 
-});
-
-/* MAIN */
-
-/* MAIN */
-
-/* HOME */
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::group(['middleware' => 'auth'], function () {
-
-	/*Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');*/
-
-	/*Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');*/
-
-	/*Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');*/
-
-	/*Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');*/
 });
 
 Route::group(['middleware' => 'auth'], function () {

@@ -31,5 +31,9 @@ class CategoriasTableSeeder extends Seeder
           'name' => 'Punch'
       ]);
 
+      DB::table('categorias')->insert([
+          'name' => 'Java'
+      ]);
+
     }
 }

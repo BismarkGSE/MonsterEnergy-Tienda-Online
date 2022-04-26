@@ -15,7 +15,7 @@ class ProductosTableSeeder extends Seeder
      */
     public function run()
     {
-      
+
       DB::table('productos')->insert([
           'nombreProducto' => 'Peach Energy Drink',
           'idCategoria' => 1,
@@ -61,7 +61,23 @@ class ProductosTableSeeder extends Seeder
           'idCategoria' => 4,
           'stock' => 235,
           'precio' => 2.98,
-          'img' => 'img/productos/1650879837_monster_juiced.jpg',
+          'img' => 'img/productos/1650879783_monster_pipeline.jpg',
+      ]);
+
+      DB::table('productos')->insert([
+          'nombreProducto' => 'Loca Moca Energy Drink',
+          'idCategoria' => 5,
+          'stock' => 23,
+          'precio' => 3.98,
+          'img' => 'img/productos/monster_loca_moca.jpg',
+      ]);
+
+      DB::table('productos')->insert([
+          'nombreProducto' => 'Vanilla Ligth Energy Drink',
+          'idCategoria' => 5,
+          'stock' => 205,
+          'precio' => 1.98,
+          'img' => 'img/productos/monster_vanilla_ligth.webp',
       ]);
 
     }

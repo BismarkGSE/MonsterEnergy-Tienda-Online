@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
 
 /* @KEYFRAMES */
-@@keyframes height-visilidad {
+@keyframes height-visilidad {
 
   0% {
     height: 0px;
@@ -218,35 +218,6 @@ footer {
 /*********************************************************************************************************/
 /**************************************** INICIO ADMININISTRACION ****************************************/
 /*********************************************************************************************************/
-.admin_container .admin_form {
-  height: 100vh;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-}
-
-.admin_form div {
-  display: flex;
-  flex-flow: column wrap;
-}
-
-.admin_form div label {
-  padding: .5em .5em .5em 0px;
-  font-weight: bold;
-}
-
-.admin_form div input {
-  padding: .5em;
-}
-
-.admin_form .inp_env {
-  margin-top: 1em;
-}
-
-.admin_form .inp_env input {
-  cursor: pointer;
-}
 
 /* @MEDIA QUERYS */
 
