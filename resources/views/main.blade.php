@@ -19,8 +19,11 @@
     <div class="container">
     <div class="row align-items-start">
       @foreach ($datos as $item)
-      <div class="w-50 h-50">
-        <img src="{{ $item->img }}" alt="" class="img-thumbnail rounded img-fluid">
+      <div class="col-lg-3 col-md-6">
+        <img src="{{ $item->img }}" alt="" class="img-thumbnail rounded img-fluid prod_img">
+        <p class="text-center">{{ $item->nombreProducto }}</p>
+        <p class="text-center">{{ $item->name }} - {{ $item->precio }} <span class="text-danger">€</span></p>
+        <p class="text-center"><button type="button" name="add-cart" class="btn btn-perso">Añadir a la Cesta</button></p>
       </div>
       @endforeach
     </div>

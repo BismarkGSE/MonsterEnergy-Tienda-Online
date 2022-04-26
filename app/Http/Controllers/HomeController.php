@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-      $datos = Productos::all();
+      $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio","productos.img")->get();
       return view('main', compact('datos'));
     }
 

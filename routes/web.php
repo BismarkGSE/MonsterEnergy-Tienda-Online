@@ -7,22 +7,17 @@ use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
-/* CARRITO
-Route::get('/', [ProductController::class, 'productList'])->name('products.list');
-Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart', [CartController::class, 'addToCart'])->name('cart.store');
-Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
-/* FIN CARRITO */
-
 /* ADMIN */
+Route::get('/admin-login', function () {
+  return view('admin-panel.admin');
+})->name('admin-login');
+
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 Auth::routes();
 
-Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin')->middleware('auth');
+Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin')->middleware('admin');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'admin'], function () {
 
   /************** INICIO CATEGORIAS **************/
   // CATEGORIAS GET

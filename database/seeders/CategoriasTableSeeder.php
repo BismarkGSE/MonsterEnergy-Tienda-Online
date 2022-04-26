@@ -14,14 +14,21 @@ class CategoriasTableSeeder extends Seeder
      */
     public function run()
     {
-      // FIRST CATEGORI
+
       DB::table('categorias')->insert([
           'name' => 'Rehab'
       ]);
 
-      // SECOND CATEGORI
       DB::table('categorias')->insert([
-          'name' => 'Juice'
+          'name' => 'Juiced'
+      ]);
+
+      DB::table('categorias')->insert([
+          'name' => 'Zero Sugar'
+      ]);
+
+      DB::table('categorias')->insert([
+          'name' => 'Punch'
       ]);
 
     }

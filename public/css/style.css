@@ -32,7 +32,8 @@ ul,li {
 }
 
 /* CONTAINER DOCUMENT */
-.contianer {
+.container {
+  margin-top: 3em !important;
 }
 
 /* INICIO PARTE HEADER */
@@ -125,8 +126,17 @@ ul,li {
 
 /* FIN PARTE DE HEADER */
 
+.prod_img {
+  width: 300px !important;
+  height: 300px !important;
+}
 
-
+.btn-perso {
+  background: linear-gradient(to right, #e3e700, #56ab2f);
+  border: linear-gradient(to right, #e3e700, #56ab2f);
+  color: black !important;
+  font-weight: bold !important;
+}
 
 
 /* INICIO PARTE DE FOOTER */
@@ -134,7 +144,7 @@ ul,li {
 footer {
   display: flex;
   justify-content: space-around;
-  margin: 0px 1em;
+  margin: 3em 1em 1em;
 }
 
 .parts_menu {
