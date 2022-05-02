@@ -5,13 +5,21 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProductosController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UsuariosController;
 
-/* ADMIN */
-Route::get('/', [UserController::class, 'show'])->name('main.show');
-Route::get('/{id}', [UserController::class, 'showCategorias'])->name('main.categorias');
+/* MAIN */
+Route::get('/', [UsuariosController::class, 'show'])->name('main');
+Auth::routes();
+/* GET */
+Route::get('/', [UsuariosController::class, 'show'])->name('main.show');
+Route::get('/categoria/{id}', [UsuariosController::class, 'show_categoria'])->name('main.show-categoria');
 Route::get('/user-login', [UsuariosController::class, 'login'])->name('main.login');
+/* POST */
+Route::post('/user-login', [UsuariosController::class, 'create'])->name('main.insert');
+Route::post('/user-login', [UsuariosController::class, 'login'])->name('main.login');
+
+/* LOGOUT */
+Route::get('/logout', [UsuariosController::class, 'logout'])->name('main.logout');
 
 /* HOME */
 Route::get('/admin', [HomeController::class, 'index'])->name('home');

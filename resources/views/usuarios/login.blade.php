@@ -7,6 +7,9 @@
     <title>Monster Energy | Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/457e6ae13b.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="img/icon/icon_monster.png">
 
@@ -16,9 +19,9 @@
 
     @include('includes.header')
 
-    <div class="container">
+    <div class="container w-50">
 
-            <!-- Pills navs -->
+      <!-- Pills navs -->
       <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
         <li class="nav-item" role="presentation">
           <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
@@ -34,38 +37,29 @@
       <!-- Pills content -->
       <div class="tab-content">
         <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-          <form>
-            <div class="text-center mb-3">
-              <p>Sign in with:</p>
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </button>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
-              </button>
+          <div class="row">
+            <div class="col-sm-12">
+              @if ( $mensaje = Session::get('error') )
+                <div class="alert alert-danger" role="alert">
+                  {{ $mensaje }}
+                </div>
+              @endif
             </div>
+          </div>
 
-            <p class="text-center">or:</p>
-
+          <form action="" method="post">
+            @csrf
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="loginName" class="form-control" />
-              <label class="form-label" for="loginName">Email or username</label>
+              <input type="email" class="form-control" name="email" required/>
+              <label class="form-label">Email</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="loginPassword" class="form-control" />
-              <label class="form-label" for="loginPassword">Password</label>
+              <input type="password" class="form-control" name="password" required/>
+              <label class="form-label">Password</label>
             </div>
 
             <!-- 2 column grid layout -->
@@ -87,63 +81,41 @@
             <!-- Submit button -->
             <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
-            <!-- Register buttons -->
-            <div class="text-center">
-              <p>Not a member? <a href="#!">Register</a></p>
-            </div>
           </form>
         </div>
+
         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-          <form>
-            <div class="text-center mb-3">
-              <p>Sign up with:</p>
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </button>
 
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
-              </button>
-            </div>
-
-            <p class="text-center">or:</p>
-
+          <form action="" method="post">
+            @csrf
             <!-- Name input -->
             <div class="form-outline mb-4">
-              <input type="text" id="registerName" class="form-control" />
-              <label class="form-label" for="registerName">Name</label>
+              <input type="text" class="form-control" name="nombre" required/>
+              <label class="form-label">nombre</label>
             </div>
 
             <!-- Username input -->
             <div class="form-outline mb-4">
-              <input type="text" id="registerUsername" class="form-control" />
-              <label class="form-label" for="registerUsername">Username</label>
+              <input type="text" class="form-control" name="username" required/>
+              <label class="form-label">username</label>
             </div>
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="registerEmail" class="form-control" />
-              <label class="form-label" for="registerEmail">Email</label>
+              <input type="email" class="form-control" name="email" required/>
+              <label class="form-label">Email</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="registerPassword" class="form-control" />
-              <label class="form-label" for="registerPassword">Password</label>
+              <input type="password" class="form-control" name="password" required/>
+              <label class="form-label">Password</label>
             </div>
 
             <!-- Repeat Password input -->
             <div class="form-outline mb-4">
-              <input type="password" id="registerRepeatPassword" class="form-control" />
-              <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+              <input type="password" class="form-control" name="password_repit" required/>
+              <label class="form-label">Repeat password</label>
             </div>
 
             <!-- Checkbox -->
@@ -159,6 +131,7 @@
             <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
           </form>
         </div>
+
       </div>
       <!-- Pills content -->
 

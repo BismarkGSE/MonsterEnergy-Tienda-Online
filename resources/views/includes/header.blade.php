@@ -8,17 +8,16 @@
 
     <ul class="main_menu">
       <li><a href="/ofertas">Ofertas</a></li>
-      <li><a href="/productos">Productos</a>
-        <ul class="sub_menu">
-          <li><a href="/monster-energy">Monster Energy</a></li>
-          <li><a href="/monster-ultra">Monster Ultra</a></li>
-          <li><a href="/juiced-monster">Juiced Monster</a></li>
-          <li><a href="/rehab-monster">Rehab Monster</a></li>
-          <li><a href="/espresso-monster">Espresso Monster</a></li>
-          <li><a href="/monster-hydrosport">Monster Hydrosport</a></li>
-        </ul>
+      <li>
+        <form action="{{ route('main.show') }}" method="get">
+          <div class="input-group rounded">
+            <input type="search" name="search" class="form-control rounded" placeholder="Search" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fas fa-search"></i>
+            </span>
+          </div>
+        </form>
       </li>
-      <li><a href="/promociones">Promociones</a></li>
     </ul>
 
   </div>
@@ -33,12 +32,30 @@
     </div>
 
     <div class="user_menu_item">
+      @if ( Auth::guard('usuarios')->check() )
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg style="margin:0 8px;width:24px;height:24px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24" class="Svg-sc-1w4q54b iyEeRT">
+              <path d="M12 12c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM20 20h-16v-1c0-3.5 3.3-6 8-6s8 2.5 8 6v1zm-13.8-2h11.7c-.6-1.8-2.8-3-5.8-3s-5.3 1.2-5.9 3z" fill="#FFF"></path>
+            </svg>Mi Cuenta
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ route('logout') }}">Log out</a></li>
+          </ul>
+        </li>
+      </ul>
+      @else
       <a href="{{ route('main.login') }}">
         <svg style="margin:0 8px;width:24px;height:24px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24" class="Svg-sc-1w4q54b iyEeRT">
           <path d="M12 12c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM20 20h-16v-1c0-3.5 3.3-6 8-6s8 2.5 8 6v1zm-13.8-2h11.7c-.6-1.8-2.8-3-5.8-3s-5.3 1.2-5.9 3z" fill="#FFF"></path>
         </svg>
         <span>Mi Cuenta</span>
       </a>
+      @endif
     </div>
 
   </div>

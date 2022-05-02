@@ -2,11 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Admin extends Middleware
+class UsuarioLogeado
 {
     /**
      * Handle an incoming request.
@@ -15,10 +14,8 @@ class Admin extends Middleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function redirectTo($request)
+    public function handle(Request $request, Closure $next)
     {
-      if (! $request->expectsJson()) {
-        return route('admin-login');
-      }
+        return $next($request);
     }
 }

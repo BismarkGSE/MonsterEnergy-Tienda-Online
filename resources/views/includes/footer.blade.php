@@ -130,13 +130,6 @@
   <div class="parts_menu_esp">
     <!-- name camp -->
     <h3 class="cerrado">Monster Energy en</h3>
-    <!-- Seleccion de idioma -->
-
-    <!-- img awards -->
-    <div class="awards">
-      <img src="" alt="Awards">
-      <img src="" alt="Awards e-commerce Spain">
-    </div>
     <!-- targetas -->
     <div class="targetas">
 

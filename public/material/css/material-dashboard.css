@@ -23,6 +23,10 @@
   width: 120px;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 *,
 *::before,
 *::after {
