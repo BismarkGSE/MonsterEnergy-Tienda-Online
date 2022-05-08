@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedidos;
-use App\Models\User;
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
 class PedidosController extends Controller
@@ -47,7 +47,7 @@ class PedidosController extends Controller
      */
     public function show()
     {
-      $datos = Pedidos::join('users','pedidos.idUsuario', '=', 'users.id')->select('pedidos.id','users.email','pedidos.fecha','pedidos.estado')->get();
+      $datos = Pedidos::join('usuarios','pedidos.idUsuario', '=', 'usuarios.id')->select('pedidos.id','usuarios.email','pedidos.fecha','pedidos.estado')->get();
       return view('pages.pedidos.pedidos', compact('datos'));
     }
 

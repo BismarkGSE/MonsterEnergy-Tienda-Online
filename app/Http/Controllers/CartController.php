@@ -11,7 +11,7 @@ class CartController extends Controller
   {
       $cartItems = \Cart::getContent();
       // dd($cartItems);
-      return view('cart', compact('cartItems'));
+      return view('cart.cart', compact('cartItems'));
   }
 
 
@@ -19,11 +19,11 @@ class CartController extends Controller
   {
       \Cart::add([
           'id' => $request->id,
-          'nombreProducto' => $request->name,
-          'precio' => $request->price,
+          'nombreProducto' => $request->nombreProducto,
+          'precio' => $request->precio,
           'quantity' => $request->quantity,
           'attributes' => array(
-          'img' => $request->image,
+          'img' => $request->img,
           )
       ]);
       session()->flash('success', 'Product is Added to Cart Successfully !');
@@ -64,4 +64,9 @@ class CartController extends Controller
 
       return redirect()->route('cart.list');
   }
+
+  public function addToDataBase(Request $request) {
+    
+  }
+
 }
