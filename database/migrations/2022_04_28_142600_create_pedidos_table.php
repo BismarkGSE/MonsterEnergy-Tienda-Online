@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('idUsuario')->unsigned()->references('id')->constrained('users')->on('users');
+            $table->foreignId('idUsuario')->unsigned()->references('id')->constrained('usuarios')->on('usuarios');
             $table->date('fecha');
             $table->string('estado');
             $table->timestamps();

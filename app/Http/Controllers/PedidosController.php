@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pedidos;
 use App\Models\Usuarios;
+use App\Models\DetallesPedidos;
 use Illuminate\Http\Request;
 
 class PedidosController extends Controller
@@ -25,7 +26,27 @@ class PedidosController extends Controller
      */
     public function create()
     {
-        //
+
+      $cart = \Cart::getContent();
+      $idUsuario = auth()->guard('usuarios')->user()->id;
+
+      $ped = new Pedidos();
+      $ped->idUsuario = $idUsuario;
+      $ped->fecha = Date('Y-m-d');
+      $ped->estado = 'pendiente';
+      $ped->save();
+
+      $idPedido = Pedidos::select('id')->max('id');
+
+      foreach ($cart as $item) {
+        $detalle = new DetallesPedidos();
+        $detalle->idPedido = $idPedido;
+        $detalle->idProducto = $item->id;
+        $detalle->precio = $item->precio;
+        $detalle->cantidad = $item->quantity;
+        $detalle->save();
+      }
+
     }
 
     /**

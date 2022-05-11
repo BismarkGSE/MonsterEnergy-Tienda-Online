@@ -45,10 +45,15 @@
                   {{ $mensaje }}
                 </div>
               @endif
+              @if ( $mensaje = Session::get('success') )
+                <div class="alert alert-success" role="alert">
+                  {{ $mensaje }}
+                </div>
+              @endif
             </div>
           </div>
 
-          <form action="" method="post">
+          <form action="{{ route('main.login') }}" method="post">
             @csrf
             <!-- Email input -->
             <div class="form-outline mb-4">
@@ -86,35 +91,35 @@
 
         <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
 
-          <form action="" method="post">
+          <form action="{{ route('main.insert') }}" method="post">
             @csrf
             <!-- Name input -->
             <div class="form-outline mb-4">
-              <input type="text" class="form-control" name="nombre" required/>
+              <input type="text" class="form-control" name="nombre_reg" required/>
               <label class="form-label">nombre</label>
             </div>
 
             <!-- Username input -->
             <div class="form-outline mb-4">
-              <input type="text" class="form-control" name="username" required/>
+              <input type="text" class="form-control" name="username_reg" required/>
               <label class="form-label">username</label>
             </div>
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" class="form-control" name="email" required/>
+              <input type="email" class="form-control" name="email_reg" required/>
               <label class="form-label">Email</label>
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
-              <input type="password" class="form-control" name="password" required/>
+              <input type="password" class="form-control" name="password_reg" required/>
               <label class="form-label">Password</label>
             </div>
 
             <!-- Repeat Password input -->
             <div class="form-outline mb-4">
-              <input type="password" class="form-control" name="password_repit" required/>
+              <input type="password" class="form-control" name="password_repit_reg" required/>
               <label class="form-label">Repeat password</label>
             </div>
 

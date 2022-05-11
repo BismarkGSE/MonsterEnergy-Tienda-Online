@@ -33,9 +33,11 @@
           <div class="row align-items-start">
             @foreach ($datos as $item)
             <div class="col-lg-3 col-md-6">
-              <img src="{{ $item->img }}" alt="" class="img-thumbnail rounded img-fluid prod_img">
-              <p class="text-center">{{ $item->nombreProducto }}</p>
-              <p class="text-center">{{ $item->name }} - {{ $item->precio }} <span class="text-danger">€</span></p>
+              <a href="{{ route('product.info', $item->nombreProducto) }}">
+                <img src="{{ $item->img }}" alt="" class="img-thumbnail rounded img-fluid prod_img">
+                <p class="text-center">{{ $item->nombreProducto }}</p>
+                <p class="text-center">{{ $item->name }} - {{ $item->precio }} <span class="text-danger">€</span></p>
+              </a>
               @if ( Auth::guard('usuarios')->check() )
               <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

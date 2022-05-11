@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Productos;
 
 class CartController extends Controller
 {
 
   public function cartList()
   {
+    if ( \Auth::guard('usuarios')->check() ) {
       $cartItems = \Cart::getContent();
-      // dd($cartItems);
       return view('cart.cart', compact('cartItems'));
+    } else {
+      return redirect()->route('main.login');
+    }
   }
 
 
@@ -33,6 +37,9 @@ class CartController extends Controller
 
   public function updateCart(Request $request)
   {
+    $stockQuery = Productos::select('stock')->where('id',$request->id)->get();
+    $stock = $stockQuery[0]->stock;
+    if ( $request->quantity <= $stock ) {
       \Cart::update(
           $request->id,
           [
@@ -44,8 +51,12 @@ class CartController extends Controller
       );
 
       session()->flash('success', 'Item Cart is Updated Successfully !');
-
       return redirect()->route('cart.list');
+    } else {
+      session()->flash('error', 'Stock superado !');
+      return redirect()->route('cart.list');
+    }
+
   }
 
   public function removeCart(Request $request)
@@ -66,7 +77,7 @@ class CartController extends Controller
   }
 
   public function addToDataBase(Request $request) {
-    
+
   }
 
 }

@@ -9,6 +9,11 @@
               <p class="text-green-800">{{ $message }}</p>
           </div>
         @endif
+        @if ($message = Session::get('error'))
+          <div class="alert alert-danger">
+              <p class="text-green-800">{{ $message }}</p>
+          </div>
+        @endif
         <h3 class="text-3xl text-bold">Cart List</h3>
         <div class="flex-1">
           <table class="table" cellspacing="0">
@@ -66,25 +71,18 @@
 
             </tbody>
           </table>
-          <div class="d-flex flex-row-reverse">
+          <div class="d-flex flex-row justify-content-between">
             <div class="mr-auto p-2">
-              <form class="" action="index.html" method="post">
-                @foreach ($cartItems as $item) 
-                <input type="hidden" name="id" value="{{ route(' ') }}">
-                <input type="hidden" name="nombreProducto" value="{{ route(' ') }}">
-                <input type="hidden" name="quantity" value="{{ route(' ') }}">
-                <input type="hidden" name="precio" value="{{ route(' ') }}">
-                @endforeach
-              </form>
+               <button type="button" name="button" class="btn btn-success"><a href="{{ route('cart.shop') }}" class="text-light">Comprar</a></button>
             </div>
-            <div class="p-2">
+            <div class="p-2 d-flex justify-content-between">
+              <div class="p-2">
+               Total: {{ Cart::getTotal() }} €
+              </div>
               <form action="{{ route('cart.clear') }}" method="POST">
                 @csrf
                 <button class="btn btn-danger">Quitar todo</button>
               </form>
-            </div>
-            <div class="p-2">
-             Total: {{ Cart::getTotal() }} €
             </div>
           </div>
         </div>

@@ -16,10 +16,18 @@ Route::get('/', [UsuariosController::class, 'show'])->name('main.show');
 Route::get('/categoria/{id}', [UsuariosController::class, 'show_categoria'])->name('main.show-categoria');
 Route::get('/user-login', [UsuariosController::class, 'login'])->name('main.login');
 /* POST */
-Route::post('/user-login', [UsuariosController::class, 'create'])->name('main.insert');
+Route::post('/user-register', [UsuariosController::class, 'create'])->name('main.insert');
 Route::post('/user-login', [UsuariosController::class, 'login'])->name('main.login');
 /* LOGOUT */
 Route::get('/logout', [UsuariosController::class, 'logout'])->name('main.logout');
+
+/* ACCOUNT */
+Route::get('/account', [UsuariosController::class, 'account'])->name('account');
+Route::get('/myCart', [UsuariosController::class, 'myCarrito'])->name('mi.carrito');
+
+/* PRODUCTO */
+Route::get('/producto/{id}', [UsuariosController::class, 'store'])->name('product.info');
+Route::get('/add-cart', [PedidosController::class, 'create'])->name('cart.shop');
 
 /* CART */
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');

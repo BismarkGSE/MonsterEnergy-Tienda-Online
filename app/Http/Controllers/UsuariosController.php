@@ -42,6 +42,7 @@ class UsuariosController extends Controller
     public function logout(Request $request)
     {
       Auth::guard('usuarios')->logout();
+      \Cart::clear();
       return redirect()->route('main.show');
     }
 
@@ -54,18 +55,20 @@ class UsuariosController extends Controller
     {
 
       $validated = $request->validate([
-        'email' => 'required',
-        'password' => 'required',
+        'nombre_reg' => 'required',
+        'username_reg' => 'required',
+        'email_reg' => 'required',
+        'password_reg' => 'required',
       ]);
 
-      if ( $request->post('password') == $request->post('password_repit') ) {
+      if ( $request->post('password_reg') == $request->post('password_repit_reg') ) {
         $usuarios = new Usuarios();
-        $usuarios->nombre = $request->post('nombre');
-        $usuarios->username = $request->post('username');
-        $usuarios->email = $request->post('email');
-        $usuarios->password = Hash::make($request->post('password'));
+        $usuarios->nombre = $request->post('nombre_reg');
+        $usuarios->username = $request->post('username_reg');
+        $usuarios->email = $request->post('email_reg');
+        $usuarios->password = Hash::make($request->post('password_reg'));
         $usuarios->save();
-        return redirect()->route('main.show');
+        return redirect()->route('main.login')->with("success", "Cuenta creada con exito !");
       } else {
         return redirect()->route('main.login')->with("error", "Las contraseñas no coinciden !");
       }
@@ -79,9 +82,11 @@ class UsuariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id)
     {
-        //
+      $datos = Productos::join("categorias","productos.idCategoria", "=", "categorias.id")->select("productos.id","productos.nombreProducto","categorias.name","productos.stock","productos.precio","productos.img")->where('productos.nombreProducto',$id)->get();
+      $categorias = Categorias::all();
+      return view('usuarios.producto', compact('datos','categorias'));
     }
 
     /**
@@ -119,7 +124,7 @@ class UsuariosController extends Controller
      */
     public function edit(Usuarios $usuarios)
     {
-        //
+      //
     }
 
     /**
