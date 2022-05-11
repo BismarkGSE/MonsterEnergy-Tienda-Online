@@ -47,6 +47,10 @@ class PedidosController extends Controller
         $detalle->save();
       }
 
+      \Cart::clear();
+
+      return redirect()->route('main.show')->with("success", "Compra realizada con exito !");
+
     }
 
     /**

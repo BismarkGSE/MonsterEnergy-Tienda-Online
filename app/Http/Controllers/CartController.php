@@ -30,7 +30,7 @@ class CartController extends Controller
           'img' => $request->img,
           )
       ]);
-      session()->flash('success', 'Product is Added to Cart Successfully !');
+      session()->flash('success', 'Producto añadido con exito !');
 
       return redirect()->route('cart.list');
   }
@@ -50,7 +50,7 @@ class CartController extends Controller
           ]
       );
 
-      session()->flash('success', 'Item Cart is Updated Successfully !');
+      session()->flash('success', 'Producto actualizado con exito !');
       return redirect()->route('cart.list');
     } else {
       session()->flash('error', 'Stock superado !');
@@ -62,7 +62,7 @@ class CartController extends Controller
   public function removeCart(Request $request)
   {
       \Cart::remove($request->id);
-      session()->flash('success', 'Item Cart Remove Successfully !');
+      session()->flash('success', 'Producto eliminado con exito !');
 
       return redirect()->route('cart.list');
   }
@@ -71,7 +71,7 @@ class CartController extends Controller
   {
       \Cart::clear();
 
-      session()->flash('success', 'All Item Cart Clear Successfully !');
+      session()->flash('success', 'Todos los productos han sido eliminados con exito !');
 
       return redirect()->route('cart.list');
   }

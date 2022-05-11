@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('detalles_productos', function (Blueprint $table) {
+        Schema::create('detalles_pedidos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('idPedido')->unsigned()->references('id')->constrained('pedidos')->on('pedidos');
             $table->foreignId('idProducto')->unsigned()->references('id')->constrained('productos')->on('productos');

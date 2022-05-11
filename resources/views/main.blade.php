@@ -31,6 +31,11 @@
         </div>
         <div class="col">
           <div class="row align-items-start">
+            @if ( $mensaje = Session::get('success') )
+              <div class="alert alert-success" role="alert">
+                {{ $mensaje }}
+              </div>
+            @endif
             @foreach ($datos as $item)
             <div class="col-lg-3 col-md-6">
               <a href="{{ route('product.info', $item->nombreProducto) }}">
